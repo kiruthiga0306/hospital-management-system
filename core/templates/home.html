@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Management System</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">🏥 R.K Hospitals</h1>
+        <p class="text-muted">Hospital Management System</p>
+    </div>
+
+    <!-- Doctors -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            Doctors
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for d in doctors %}
+                <li class="list-group-item">
+                    <strong>{{ d.name }}</strong> — {{ d.specialization }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No doctors added</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Patients -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-success text-white">
+            Patients
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for p in patients %}
+                <li class="list-group-item">
+                    <strong>{{ p.name }}</strong> — {{ p.age }} years
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No patients added</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Appointments -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            Appointments
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for a in appointments %}
+                <li class="list-group-item">
+                    {{ a.patient }} → {{ a.doctor }} <span class="text-muted">({{ a.date }})</span>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No appointments</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Prescriptions -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white">
+            Prescriptions
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for pr in prescriptions %}
+                <li class="list-group-item">
+                    {{ pr.patient }} — {{ pr.medicines }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No prescriptions</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
